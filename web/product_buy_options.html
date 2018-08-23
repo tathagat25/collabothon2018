@@ -11,6 +11,15 @@
   <link rel="icon" sizes="192x192" href="images/icons/icon-192x192.png">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  
 </head>
 <body>
 
@@ -24,10 +33,48 @@
   <main class="main">
     <div id="user-signed-in" style="display:none">
         <div class="main__div card" hidden>
-            <h2>Products to maintain/check</h2>
+            <h2>Product Selection Page</h2>
+            <h3 style="color:red" class="existing_product"></h3>
+            <h4>Following are the equivalent products we found for you using our algorithm</h4>
             <div class="products_table">
                 
             </div>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Seller</th>
+                    <th>Product</th>
+                    <th>Price (EUR)</th>
+                    <th>Delivery</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>Bosch</td>
+                    <td>Macho Heater</td>
+                    <td>10000</td>
+                    <td>1 month</td>
+                </tr>
+                <tr>
+                    <td>Bosch</td>
+                    <td>Heater 007</td>
+                    <td>12000</td>
+                    <td>2 month</td>
+                </tr>
+                <tr>
+                    <td>Siemens</td>
+                    <td>Heat me up baby</td>
+                    <td>14000</td>
+                    <td>1.5 month</td>
+                </tr>
+                <tr>
+                    <td>Viessmann</td>
+                    <td>Burn to hell</td>
+                    <td>20000</td>
+                    <td>3 month</td>
+                </tr>
+                </tbody>
+            </table>
             
         </div>
     </div>
@@ -59,7 +106,7 @@
   <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/2.5.1/firebaseui.css" />
 
   <!-- Uncomment the line below when ready to test with fake data -->
-  <script src="scripts/handyman.js?2" async></script>
+  <script src="scripts/product_buy_options.js?2" async></script>
 
 </body>
 </html>

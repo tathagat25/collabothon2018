@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/html">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -14,35 +14,32 @@
 </head>
 <body>
 
-  <header class="header header_handyman">
+<header class="header techniker_schedule">
     <h1 class="header__title">The Machine Men</h1>
     <div align="left">
         <button class="mdl-button mdl-js-button mdl-button--raised" id="sign-out">Sign Out</button>
     </div>
-  </header>
+</header>
 
-  <main class="main">
+<main class="main">
     <div id="user-signed-in" style="display:none">
         <div class="main__div card" hidden>
-            <h2>Products to maintain/check</h2>
-            <div class="products_table">
-                
-            </div>
-            
+            <h1>Please select an option for technical checkup</h1>
+            <div class="choose_date"></div>
         </div>
     </div>
     <div id="user-signed-out" style="display:none">
         <div id="firebaseui-auth-container"></div>
         <div id="loader">Loading...</div>
     </div>
-  </main>
-  
-  <script src="https://www.gstatic.com/firebasejs/4.9.1/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/4.9.1/firebase-auth.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/4.9.1/firebase-database.js"></script>
+</main>
 
-  <script src="https://www.gstatic.com/firebasejs/4.10.0/firebase.js"></script>
-  <script>
+<script src="https://www.gstatic.com/firebasejs/4.9.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/4.9.1/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/4.9.1/firebase-database.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/4.10.0/firebase.js"></script>
+<script>
     // Initialize Firebase
     var config = {
       apiKey: "AIzaSyCbDIug0aq3knRYMte87B6Io6wHTy0DdMo",
@@ -54,12 +51,12 @@
     };
     firebase.initializeApp(config);
   </script>
-    
-  <script src="https://cdn.firebase.com/libs/firebaseui/2.5.1/firebaseui.js"></script>
-  <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/2.5.1/firebaseui.css" />
 
-  <!-- Uncomment the line below when ready to test with fake data -->
-  <script src="scripts/handyman.js?2" async></script>
+<script src="https://cdn.firebase.com/libs/firebaseui/2.5.1/firebaseui.js"></script>
+<link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/2.5.1/firebaseui.css" />
+
+<!-- Uncomment the line below when ready to test with fake data -->
+<script src="scripts/technical_check.js?3" async></script>
 
 </body>
 </html>

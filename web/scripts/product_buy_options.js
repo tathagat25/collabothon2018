@@ -20,6 +20,7 @@
     headerTitle: document.querySelector('.header__title'),
     mainDiv: document.querySelector('.main__div'),
     productsTable: document.querySelector('.products_table'),
+    existing_product: document.querySelector('.existing_product'),
     user: null,
     customer_id:null,
     registered_machine_id:null
@@ -33,25 +34,6 @@
    ****************************************************************************/
   document.getElementById('sign-out').addEventListener('click', function() {
       firebase.auth().signOut();
-    });
-  
-
-    document.getElementById('buttonMarkBroken').addEventListener('click', function() {
-      var database = firebase.database();
-      var comment = document.getElementById('techincal_comment').value;
-      
-      //alert(comment);
-      
-      database.ref('registered_machines/' + app.customer_id + '/' + app.registered_machine_id).update({
-        status : "broken",
-        inspection_comment: comment
-      }, function(error) {
-    if (error) {
-      // The write failed...
-    } else {
-      window.location.replace("handyman.html");
-    }
-  });
     });
 
 
@@ -78,33 +60,16 @@
     
     //alert(window.location.href);
     var url = new URL(window.location.href);
-    var customer_id = url.searchParams.get("customer_id");
-    app.customer_id = customer_id;
-    var registered_machine_id = url.searchParams.get("registered_machine_id");
-    app.registered_machine_id=registered_machine_id;
-    console.log(customer_id);
-    console.log(registered_machine_id);
+    var product_id = url.searchParams.get("product_id");
+    app.product_id = product_id;
     
     var div = document.createElement("div");
-    div.classList.add("row-full");
-    database.ref('/users/' + customer_id).once('value').then(function(snapshot_user) {
-      div.innerHTML += "Customer Name: " + snapshot_user.val().name;
+    database.ref('/product/' + product_id).once('value').then(function(snapshot_product) {
+      div.innerHTML += "Manufacturer: " + snapshot_product.val().manufacturer;
+      div.innerHTML += "</br>Product Name: " + snapshot_product.val().name;
     });
     
-    database.ref('/registered_machines/' + customer_id + '/' + registered_machine_id).once('value').then(function(snapshot_registered_device) {
-      console.log(snapshot_registered_device.key);
-      console.log(snapshot_registered_device.val());
-      div.innerHTML += '</br>Install Date ' + snapshot_registered_device.val().install_date;
-      
-      
-      database.ref('/product/' + snapshot_registered_device.val().product_id).once('value').then(function(snapshot_product) {
-        div.innerHTML += "</br>Manufacturer: " + snapshot_product.val().manufacturer;
-        div.innerHTML += "</br>Name: " + snapshot_product.val().name;
-        div.innerHTML += "</br>Model Year: " + snapshot_product.val().model_year;
-      });
-    });
-    
-    app.productsTable.appendChild(div);
+    app.existing_product.appendChild(div);
   };
   
 

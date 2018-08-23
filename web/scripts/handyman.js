@@ -18,7 +18,6 @@
 
   var app = {
     headerTitle: document.querySelector('.header__title'),
-    totalCoffee: document.querySelector('.total__coffee'),
     mainDiv: document.querySelector('.main__div'),
     productsTable: document.querySelector('.products_table'),
     user: null
@@ -33,60 +32,6 @@
   document.getElementById('sign-out').addEventListener('click', function() {
       firebase.auth().signOut();
     });
-  
-
-  // TODO - refactor the below 2 methods
-  /*document.getElementById('buttonSingleCoffee').addEventListener('click', function() {
-    var database = firebase.database();
-    var userId = app.user.uid;
-
-    // Get a key for a new Post.
-    var newKey = database.ref().child('coffees/' + userId).push().key;
-
-    //console.log("Creating new single coffee %s", newKey);
-    database.ref('coffees/' + userId + "/" + newKey).update({
-      timestamp: Date.now(),
-      type: 1
-    });
-    // also upddate the unpaid coffee count
-    //console.log("Updating unpaid coffee count for user %s", userId);
-    var newCount = 0;
-    database.ref('/users/' + userId + "/unpaid_coffees_count").once('value').then(function(snapshot) {
-      //console.log("Existing unpaid coffee count = %s for user %s", snapshot.val(), userId);
-      newCount = snapshot.val() + 1;
-      //console.log("New unpaid coffee count = %s for user %s", newCount, userId);
-      database.ref('users/' + userId).update({
-        unpaid_coffees_count : newCount
-      });
-    });
-    alert("1 coffee added");
-  });
-
-  document.getElementById('buttonDoubleCoffee').addEventListener('click', function() {
-    var database = firebase.database();
-    var userId = app.user.uid;
-
-    /// Get a key for a new Post.
-    var newKey = database.ref().child('coffees/' + userId).push().key;
-
-    //console.log("Creating new double coffee %s", newKey);
-    database.ref('coffees/' + userId + "/" + newKey).update({
-      timestamp: Date.now(),
-      type: 2
-    });
-    // also upddate the unpaid coffee count
-    //console.log("Updating unpaid coffee count for user %s", userId);
-    var newCount = 0;
-    database.ref('/users/' + userId + "/unpaid_coffees_count").once('value').then(function(snapshot) {
-      //console.log("Existing unpaid coffee count = %s for user %s", snapshot.val(), userId);
-      newCount = snapshot.val() + 2;
-      //console.log("New unpaid coffee count = %s for user %s", newCount, userId);
-      database.ref('users/' + userId).update({
-        unpaid_coffees_count : newCount
-      });
-    });
-    alert("2 coffees added");
-  });*/
 
 
   /*****************************************************************************
@@ -177,7 +122,6 @@
             name: user.displayName,
             email: user.email,
             register_timestamp: Date.now(),
-            //unpaid_coffees_count: 0
           });
         }
         
@@ -185,7 +129,11 @@
         app.mainDiv.removeAttribute('hidden');
         
         // show the upcmoing appoitments/contracts of the handyman
-        database.ref('handyman_machines/' + userId).once('value', function(snapshot) {
+        database.ref('handyman_machines/' + userId).on('value', function(snapshot) {
+          while (app.productsTable.firstChild) {
+              app.productsTable.removeChild(app.productsTable.firstChild);
+          }
+          
           snapshot.forEach(function(childSnapshot) {
             //console.log(childSnapshot.key);
             var div = document.createElement("div");
@@ -226,7 +174,7 @@
               
               // only interested in products with status alarm
               console.log(product_status);
-              if (product_status == "alarm") {
+              if (product_status == "technical_check_pending") {
                 app.productsTable.appendChild(div);
               }
             });
@@ -246,11 +194,6 @@
         });
       });
 
-      /*var unpaidCoffeeCount = database.ref('users/' + userId + '/unpaid_coffees_count');
-      unpaidCoffeeCount.on('value', function(snapshot) {
-        app.totalCoffee.textContent = snapshot.val();
-      });*/
-      
       document.getElementById('user-signed-in').style.display = 'block';
       document.getElementById('user-signed-out').style.display = 'none';
       
@@ -260,7 +203,6 @@
       app.headerTitle.textContent = "The Machine Men";
 
       app.mainDiv.setAttribute('hidden', true);
-      //app.totalCoffee.textContent = "";
       
       document.getElementById('user-signed-in').style.display = 'none';
       document.getElementById('user-signed-out').style.display = 'block';
