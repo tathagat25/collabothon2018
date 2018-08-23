@@ -157,7 +157,9 @@
                    var buyNewText = document.createTextNode("Buy New");
 
                    buyNew.appendChild(buyNewText);
+buyNew.onclick = function() {window.open("product_buy_options.html?product_id="+childSnapshot.val().product_id,"_self")
 
+}
                    newDiv.appendChild(document.createElement("br"));
                    newDiv.appendChild(document.createTextNode("Product broken"));
                    newDiv.appendChild(document.createElement("br"));
