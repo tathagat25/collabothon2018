@@ -80,18 +80,36 @@
     newDiv.appendChild(thirdOption);
 
     firstOption.addEventListener("click", function(e) {
-         database.ref('registered_machines/' + app.customer_id + '/' + app.registered_machine_id).update({
-                 status : "technical_check_pending",
-                 next_inspection_date : firstOptionLabel
-               }, function(error) {
-             if (error) {
-               console.log("Something went wrong while schedule technical check", error)
-             }
-             console.log("The value of firstOption " + firstOptionLabel)
-           });
-
-         window.location.replace("index.html");
+        updateRegisteredMachines(firstOptionLabel);
      });
+    secondOption.addEventListener("click", function(e) {
+            updateRegisteredMachines(secondOptionLabel);
+         });
+    thirdOption.addEventListener("click", function(e) {
+            updateRegisteredMachines(thirdOptionLabel);
+         });
+
+     function updateRegisteredMachines(inspectionDate) {
+          var database = firebase.database();
+          database.ref('registered_machines/' + app.customer_id + '/' + app.registered_machine_id).update({
+                          status : "technical_check_pending",
+                          next_inspection_date : inspectionDate
+                        }, function(error) {
+                      if (error) {
+                        console.log("Something went wrong while schedule technical check", error)
+                      }
+                    });
+         /* database.ref('handyman_machines').limitToFirst(1).once(+ app.customer_id + '/' + app.registered_machine_id).update({
+                                    status : "technical_check_pending",
+                                    next_inspection_date : inspectionDate
+                                  }, function(error) {
+                                if (error) {
+                                  console.log("Something went wrong while schedule technical check", error)
+                                }
+                              });*/
+
+          window.location.replace("index.html");
+     }
 
      app.choose_date.appendChild(newDiv);
   };
