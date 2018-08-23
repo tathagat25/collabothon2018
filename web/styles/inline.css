@@ -425,11 +425,11 @@ table, th, td {
 }
 
 .status_green {
-	background: green;
+	background: #1bce54;
 }
 
 .status_red {
-	background: red;
+	background: #ff000b;
 }
 
 .status_blue {
@@ -437,5 +437,5 @@ table, th, td {
 }
 
 .status_orange {
-	background: orange;
+	background: #ffd400;
 }
