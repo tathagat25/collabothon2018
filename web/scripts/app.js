@@ -18,7 +18,6 @@
 
   var app = {
     headerTitle: document.querySelector('.header__title'),
-    totalCoffee: document.querySelector('.total__coffee'),
     mainDiv: document.querySelector('.main__div'),
     productsTable: document.querySelector('.products_table'),
     user: null
@@ -33,61 +32,6 @@
   document.getElementById('sign-out').addEventListener('click', function() {
       firebase.auth().signOut();
     });
-  
-
-  // TODO - refactor the below 2 methods
-  /*document.getElementById('buttonSingleCoffee').addEventListener('click', function() {
-    var database = firebase.database();
-    var userId = app.user.uid;
-
-    // Get a key for a new Post.
-    var newKey = database.ref().child('coffees/' + userId).push().key;
-
-    //console.log("Creating new single coffee %s", newKey);
-    database.ref('coffees/' + userId + "/" + newKey).update({
-      timestamp: Date.now(),
-      type: 1
-    });
-    // also upddate the unpaid coffee count
-    //console.log("Updating unpaid coffee count for user %s", userId);
-    var newCount = 0;
-    database.ref('/users/' + userId + "/unpaid_coffees_count").once('value').then(function(snapshot) {
-      //console.log("Existing unpaid coffee count = %s for user %s", snapshot.val(), userId);
-      newCount = snapshot.val() + 1;
-      //console.log("New unpaid coffee count = %s for user %s", newCount, userId);
-      database.ref('users/' + userId).update({
-        unpaid_coffees_count : newCount
-      });
-    });
-    alert("1 coffee added");
-  });
-
-  document.getElementById('buttonDoubleCoffee').addEventListener('click', function() {
-    var database = firebase.database();
-    var userId = app.user.uid;
-
-    /// Get a key for a new Post.
-    var newKey = database.ref().child('coffees/' + userId).push().key;
-
-    //console.log("Creating new double coffee %s", newKey);
-    database.ref('coffees/' + userId + "/" + newKey).update({
-      timestamp: Date.now(),
-      type: 2
-    });
-    // also upddate the unpaid coffee count
-    //console.log("Updating unpaid coffee count for user %s", userId);
-    var newCount = 0;
-    database.ref('/users/' + userId + "/unpaid_coffees_count").once('value').then(function(snapshot) {
-      //console.log("Existing unpaid coffee count = %s for user %s", snapshot.val(), userId);
-      newCount = snapshot.val() + 2;
-      //console.log("New unpaid coffee count = %s for user %s", newCount, userId);
-      database.ref('users/' + userId).update({
-        unpaid_coffees_count : newCount
-      });
-    });
-    alert("2 coffees added");
-  });*/
-
 
   /*****************************************************************************
    *
@@ -95,8 +39,6 @@
    *
    ****************************************************************************/
     app.startML = function(product) {
-      //console.log(product.product_id);
-      // get the product info from product_id
       var database = firebase.database();
       database.ref('/product/' + product.product_id).once('value').then(function(snapshot) {
         if (snapshot.val()) {
@@ -115,8 +57,7 @@
 
   // add startup code here
   app.init = function() {
-    //console.log("BEGIN init");
-    
+
     var ui = new firebaseui.auth.AuthUI(firebase.auth());
     ui.start('#firebaseui-auth-container', {
       callbacks: {
@@ -147,11 +88,9 @@
         this.close();
     }
 });
-    //console.log("END init");
   };
 
   firebase.auth().onAuthStateChanged(function(user) {
-    //console.log("firing firebase.auth().onAuthStateChanged");
     if (user) {
       // User is signed in.
       var approved = false;
@@ -171,21 +110,17 @@
       // Get a reference to the database service
       var database = firebase.database();
       var userId = user.uid;
-      //console.log("Checking if %s is already registered", userId);
       database.ref('/users/' + userId).once('value').then(function(snapshot) {
         if (snapshot.val()) {
-          //console.log("User %s is already registered", userId);
           database.ref('users/' + userId).update({
             last_login_timestamp: Date.now()
           });
           
         } else {
-          //console.log("Creating User {}", userId);
           database.ref('users/' + userId).set({
             name: user.displayName,
             email: user.email,
             register_timestamp: Date.now(),
-            //unpaid_coffees_count: 0
           });
         }
         
@@ -199,31 +134,51 @@
             database.ref('/product/' + childSnapshot.val().product_id).once('value').then(function(snapshot) {
               if (snapshot.val()) {
                 console.log(snapshot.val());
-                var tr = document.createElement("tr");
-                var td1 = document.createElement("td");
-                td1.textContent = snapshot.val().manufacturer;
-                var td2 = document.createElement("td");
-                td2.textContent = "STAT!";
-                tr.appendChild(td1);
-                tr.appendChild(td2);
-                
-                app.productsTable.appendChild(tr);
+                var newDiv = document.createElement("div");
+                var manufacturer = document.createTextNode(snapshot.val().manufacturer);
+                var status = childSnapshot.val().status;
+                var daysForNextAlert = document.createTextNode("Next Alert in " + childSnapshot.val().days_until_next_alert + " days ");
+
+                newDiv.appendChild(manufacturer);
+
+                if ("ok" == status) {
+                   newDiv.classList.add("status_green");
+                   newDiv.appendChild(document.createElement("br"));
+                   newDiv.appendChild(daysForNextAlert);
+                   newDiv.appendChild(document.createElement("br"));
+                }
+                else if ("broken" == status){
+                   newDiv.classList.add("status_red");
+                   var buyNew = document.createElement("BUTTON");
+                   var buyNewText = document.createTextNode("Buy New");
+
+                   buyNew.appendChild(buyNewText);
+
+                   newDiv.appendChild(document.createElement("br"));
+                   newDiv.appendChild(buyNew);
+                }
+                else {
+                   newDiv.classList.add("status_orange");
+                   var technicalCheckAppointment = document.createElement("BUTTON");
+                   var technicalCheckAppointmentText = document.createTextNode("Technical Check");
+                   technicalCheckAppointment.appendChild(technicalCheckAppointmentText);
+
+                   newDiv.appendChild(document.createElement("br"));
+                   newDiv.appendChild(daysForNextAlert);
+                   newDiv.appendChild(document.createElement("br"));
+                   newDiv.appendChild(document.createElement("br"));
+                   newDiv.appendChild(technicalCheckAppointment);
+                }
+
+                newDiv.classList.add("row-full");
+                app.productsTable.appendChild(newDiv);
               }
             });
-            
-            
-            //app.productsTable
-            //var childKey = childSnapshot.key;
-            //var childData = childSnapshot.val();
-            // app.startML(childSnapshot.val());
+
+             app.productsTable.appendChild(document.createElement("br"));
           });
         });
       });
-
-      /*var unpaidCoffeeCount = database.ref('users/' + userId + '/unpaid_coffees_count');
-      unpaidCoffeeCount.on('value', function(snapshot) {
-        app.totalCoffee.textContent = snapshot.val();
-      });*/
       
       document.getElementById('user-signed-in').style.display = 'block';
       document.getElementById('user-signed-out').style.display = 'none';
@@ -234,8 +189,7 @@
       app.headerTitle.textContent = "The Machine Men";
 
       app.mainDiv.setAttribute('hidden', true);
-      //app.totalCoffee.textContent = "";
-      
+
       document.getElementById('user-signed-in').style.display = 'none';
       document.getElementById('user-signed-out').style.display = 'block';
     }
