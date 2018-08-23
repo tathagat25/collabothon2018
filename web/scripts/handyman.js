@@ -168,9 +168,11 @@
               
               database.ref('/product/' + snapshot_registered_device.val().product_id).once('value').then(function(snapshot_product) {
                 div.innerHTML += "</br>Manufacturer: " + snapshot_product.val().manufacturer;
-                div.innerHTML += "</br>Name: " + snapshot_product.val().name;
-                div.innerHTML += "</br>Model Year: " + snapshot_product.val().model_year;
+                div.innerHTML += " / Name: " + snapshot_product.val().name;
+                div.innerHTML += " / Model Year: " + snapshot_product.val().model_year;
               });
+              
+              div.innerHTML += '</br><b>Inspection Date ' + snapshot_registered_device.val().next_inspection_date + '</b>';
               
               // only interested in products with status alarm
               console.log(product_status);
