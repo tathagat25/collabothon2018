@@ -128,9 +128,12 @@
                 console.log(snapshot.val());
                 var newDiv = document.createElement("div");
                 var manufacturer = document.createTextNode(snapshot.val().manufacturer);
+                var name = document.createTextNode(snapshot.val().name);
                 var status = childSnapshot.val().status;
                 var daysForNextAlert = document.createTextNode("Next Alert in " + childSnapshot.val().days_until_next_alert + " days ");
 
+                newDiv.appendChild(name);
+                newDiv.appendChild(document.createElement("br"));
                 newDiv.appendChild(manufacturer);
 
                 if ("ok" == status) {
@@ -141,11 +144,18 @@
                 }
                 else if ("broken" == status){
                    newDiv.classList.add("status_red");
+
+                   newDiv.appendChild(document.createElement("br"));
+                   var inspection_comment = document.createTextNode("Inspection comment: " + childSnapshot.val().inspection_comment);
+                   newDiv.appendChild(inspection_comment);
+
                    var buyNew = document.createElement("BUTTON");
                    var buyNewText = document.createTextNode("Buy New");
 
                    buyNew.appendChild(buyNewText);
 
+                   newDiv.appendChild(document.createElement("br"));
+                   newDiv.appendChild(document.createTextNode("Product broken"));
                    newDiv.appendChild(document.createElement("br"));
                    newDiv.appendChild(buyNew);
                 }
@@ -154,10 +164,11 @@
                    var technicalCheckAppointment = document.createElement("BUTTON");
                    var technicalCheckAppointmentText = document.createTextNode("Technical Check");
                    technicalCheckAppointment.appendChild(technicalCheckAppointmentText);
+                   technicalCheckAppointment.addEventListener("click", function(e) {
+                       window.location.replace("techniker_schedule.html?customer_id=" +
+                        userId + "&registered_machine_id=" + childSnapshot.val().product_id + "");
+                   });
 
-                   newDiv.appendChild(document.createElement("br"));
-                   newDiv.appendChild(daysForNextAlert);
-                   newDiv.appendChild(document.createElement("br"));
                    newDiv.appendChild(document.createElement("br"));
                    newDiv.appendChild(technicalCheckAppointment);
                 }
