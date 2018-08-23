@@ -129,7 +129,11 @@
         app.mainDiv.removeAttribute('hidden');
         
         // show the upcmoing appoitments/contracts of the handyman
-        database.ref('handyman_machines/' + userId).once('value', function(snapshot) {
+        database.ref('handyman_machines/' + userId).on('value', function(snapshot) {
+          while (app.productsTable.firstChild) {
+              app.productsTable.removeChild(app.productsTable.firstChild);
+          }
+          
           snapshot.forEach(function(childSnapshot) {
             //console.log(childSnapshot.key);
             var div = document.createElement("div");
@@ -170,7 +174,7 @@
               
               // only interested in products with status alarm
               console.log(product_status);
-              if (product_status == "alarm") {
+              if (product_status == "technical_check_pending") {
                 app.productsTable.appendChild(div);
               }
             });
