@@ -432,6 +432,10 @@ table, th, td {
 	background: red;
 }
 
+.status_blue {
+	background: blue;
+}
+
 .status_orange {
 	background: orange;
 }

@@ -163,6 +163,13 @@
                    newDiv.appendChild(document.createElement("br"));
                    newDiv.appendChild(buyNew);
                 }
+                else if ("technical_check_pending" == status){
+                       newDiv.classList.add("status_blue");
+
+                       newDiv.appendChild(document.createElement("br"));
+                       var scheduledDate = document.createTextNode("Scheduled: " +  childSnapshot.val().next_inspection_date);
+                       newDiv.appendChild(scheduledDate);
+                }
                 else {
                    newDiv.classList.add("status_orange");
                    var technicalCheckAppointment = document.createElement("BUTTON");
