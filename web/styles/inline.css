@@ -424,18 +424,18 @@ table, th, td {
  padding: 10px;
 }
 
-.status_green {
+.status_ok {
 	background: #1bce54;
 }
 
-.status_red {
+.status_broken {
 	background: #ff000b;
 }
 
-.status_blue {
-	background: blue;
+.status_appointment {
+	background: #fc9204;
 }
 
-.status_orange {
+.status_alarm {
 	background: #ffd400;
 }

@@ -141,13 +141,13 @@
                 newDiv.appendChild(manufacturer);
 
                 if ("ok" == status) {
-                   newDiv.classList.add("status_green");
+                   newDiv.classList.add("status_ok");
                    newDiv.appendChild(document.createElement("br"));
                    newDiv.appendChild(daysForNextAlert);
                    newDiv.appendChild(document.createElement("br"));
                 }
                 else if ("broken" == status){
-                   newDiv.classList.add("status_red");
+                   newDiv.classList.add("status_broken");
 
                    newDiv.appendChild(document.createElement("br"));
                    var inspection_comment = document.createTextNode("Inspection comment: " + childSnapshot.val().inspection_comment);
@@ -166,14 +166,14 @@ buyNew.onclick = function() {window.open("product_buy_options.html?product_id="+
                    newDiv.appendChild(buyNew);
                 }
                 else if ("technical_check_pending" == status){
-                       newDiv.classList.add("status_blue");
+                       newDiv.classList.add("status_appointment");
 
                        newDiv.appendChild(document.createElement("br"));
                        var scheduledDate = document.createTextNode("Scheduled: " +  childSnapshot.val().next_inspection_date);
                        newDiv.appendChild(scheduledDate);
                 }
                 else {
-                   newDiv.classList.add("status_orange");
+                   newDiv.classList.add("status_alarm");
                    var technicalCheckAppointment = document.createElement("BUTTON");
                    var technicalCheckAppointmentText = document.createTextNode("Technical Check");
                    technicalCheckAppointment.appendChild(technicalCheckAppointmentText);
