@@ -79,6 +79,7 @@
       ],
       signInSuccessUrl : "/index.html"
     });
+<<<<<<< Updated upstream
 
 	Push.create("Waning!", {
     body: "Your machine needs a checkup.",
@@ -88,6 +89,9 @@
         this.close();
     }
 });
+=======
+    //console.log("END init");
+>>>>>>> Stashed changes
   };
 
   firebase.auth().onAuthStateChanged(function(user) {
@@ -179,6 +183,35 @@
           });
         });
       });
+<<<<<<< Updated upstream
+=======
+
+  //check for products that need to be checked
+  
+        database.ref('registered_machines/' + userId).once('value', function(snapshot) {
+          snapshot.forEach(function(childSnapshot) {
+      if (childSnapshot.val().status != "ok") {
+        //send a push notification to warn about a needed checkup
+		var registered_machine_id = childSnapshot.key
+        var productId = childSnapshot.val().product_id;
+        database.ref('product/' + productId).once('value').then(function(product){
+          Push.create("Waning!", {
+          body: "Your " + product.val().name + " needs a checkup.",
+          icon: 'images/warn.jpg',
+          onClick: function () {
+            window.focus();
+            window.open("fixproduct.html?registered_machine_id="+registered_machine_id,"_self");
+            this.close();
+          }
+          });
+        });
+      }
+})});
+      /*var unpaidCoffeeCount = database.ref('users/' + userId + '/unpaid_coffees_count');
+      unpaidCoffeeCount.on('value', function(snapshot) {
+        app.totalCoffee.textContent = snapshot.val();
+      });*/
+>>>>>>> Stashed changes
       
       document.getElementById('user-signed-in').style.display = 'block';
       document.getElementById('user-signed-out').style.display = 'none';
