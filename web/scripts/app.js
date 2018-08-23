@@ -120,7 +120,11 @@
         app.mainDiv.removeAttribute('hidden');
         
         //start the ML on user's products
-        database.ref('registered_machines/' + userId).once('value', function(snapshot) {
+        database.ref('registered_machines/' + userId).on('value', function(snapshot) {
+          while (app.productsTable.firstChild) {
+              app.productsTable.removeChild(app.productsTable.firstChild);
+          }
+          
           snapshot.forEach(function(childSnapshot) {
             // extend the table
             database.ref('/product/' + childSnapshot.val().product_id).once('value').then(function(snapshot) {
