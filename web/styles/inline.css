@@ -418,3 +418,18 @@ table, th, td {
     border: 1px solid black;
 }
 
+.row-full{
+ width: 100%;
+ position: relative;
+ height: 100px;
+ margin-top: 5px;
+ padding: 10px;
+}
+
+.status_green {
+	background: green;
+}
+
+.status_red {
+	background: red;
+}
