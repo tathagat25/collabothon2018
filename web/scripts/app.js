@@ -193,10 +193,6 @@
         });
       }
 })});
-      /*var unpaidCoffeeCount = database.ref('users/' + userId + '/unpaid_coffees_count');
-      unpaidCoffeeCount.on('value', function(snapshot) {
-        app.totalCoffee.textContent = snapshot.val();
-      });*/
       
       document.getElementById('user-signed-in').style.display = 'block';
       document.getElementById('user-signed-out').style.display = 'none';

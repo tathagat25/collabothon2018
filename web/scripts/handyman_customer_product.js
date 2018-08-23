@@ -18,7 +18,6 @@
 
   var app = {
     headerTitle: document.querySelector('.header__title'),
-    totalCoffee: document.querySelector('.total__coffee'),
     mainDiv: document.querySelector('.main__div'),
     productsTable: document.querySelector('.products_table'),
     user: null,

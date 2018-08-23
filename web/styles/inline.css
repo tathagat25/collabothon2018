@@ -194,14 +194,8 @@ body {
   overflow-x: hidden;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
-	//background:url("../images/coffee-beans.jpg"); background-size: 100% auto; }
-	
-.add__coffee__button__single, .add__coffee__button__double {
-	cursor: pointer;
-	max-width: 100%;
-	height: auto;
 }
-
+	
 .dialog-container {
   background: rgba(0, 0, 0, 0.57);
   position: fixed;
