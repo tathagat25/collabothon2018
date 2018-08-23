@@ -411,3 +411,10 @@ body {
   .mdl-button--primary.mdl-button--primary.mdl-button--raised, .mdl-button--primary.mdl-button--primary.mdl-button--fab {
     color: white;
     background-color: #3f51b5; }
+
+
+/* Machine Men own Styles */
+table, th, td {
+    border: 1px solid black;
+}
+

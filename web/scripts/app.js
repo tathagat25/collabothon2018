@@ -35,7 +35,7 @@
   
 
   // TODO - refactor the below 2 methods
-  document.getElementById('buttonSingleCoffee').addEventListener('click', function() {
+  /*document.getElementById('buttonSingleCoffee').addEventListener('click', function() {
     var database = firebase.database();
     var userId = app.user.uid;
 
@@ -85,7 +85,7 @@
       });
     });
     alert("2 coffees added");
-  });
+  });*/
 
 
   /*****************************************************************************
@@ -167,18 +167,18 @@
             name: user.displayName,
             email: user.email,
             register_timestamp: Date.now(),
-            unpaid_coffees_count: 0
+            //unpaid_coffees_count: 0
           });
         }
         
         // approved users are handled here
         app.mainDiv.removeAttribute('hidden');
       });
-      
-      var unpaidCoffeeCount = database.ref('users/' + userId + '/unpaid_coffees_count');
+
+      /*var unpaidCoffeeCount = database.ref('users/' + userId + '/unpaid_coffees_count');
       unpaidCoffeeCount.on('value', function(snapshot) {
         app.totalCoffee.textContent = snapshot.val();
-      });
+      });*/
       
       document.getElementById('user-signed-in').style.display = 'block';
       document.getElementById('user-signed-out').style.display = 'none';
@@ -189,7 +189,7 @@
       app.headerTitle.textContent = "The Machine Men";
 
       app.mainDiv.setAttribute('hidden', true);
-      app.totalCoffee.textContent = "";
+      //app.totalCoffee.textContent = "";
       
       document.getElementById('user-signed-in').style.display = 'none';
       document.getElementById('user-signed-out').style.display = 'block';
