@@ -79,19 +79,7 @@
       ],
       signInSuccessUrl : "/index.html"
     });
-<<<<<<< Updated upstream
 
-	Push.create("Waning!", {
-    body: "Your machine needs a checkup.",
-    icon: 'images/warn.jpg',
-    onClick: function () {
-        window.focus();
-        this.close();
-    }
-});
-=======
-    //console.log("END init");
->>>>>>> Stashed changes
   };
 
   firebase.auth().onAuthStateChanged(function(user) {
@@ -183,8 +171,6 @@
           });
         });
       });
-<<<<<<< Updated upstream
-=======
 
   //check for products that need to be checked
   
@@ -195,7 +181,7 @@
 		var registered_machine_id = childSnapshot.key
         var productId = childSnapshot.val().product_id;
         database.ref('product/' + productId).once('value').then(function(product){
-          Push.create("Waning!", {
+          Push.create("Warning!", {
           body: "Your " + product.val().name + " needs a checkup.",
           icon: 'images/warn.jpg',
           onClick: function () {
@@ -211,11 +197,12 @@
       unpaidCoffeeCount.on('value', function(snapshot) {
         app.totalCoffee.textContent = snapshot.val();
       });*/
->>>>>>> Stashed changes
       
       document.getElementById('user-signed-in').style.display = 'block';
       document.getElementById('user-signed-out').style.display = 'none';
+      document.getElementById('sign-out').style.display = 'block';
       
+      //console.log("User is signed in");
     } else {
       // User is signed out.
       //console.log("User is signed out");
@@ -225,6 +212,7 @@
 
       document.getElementById('user-signed-in').style.display = 'none';
       document.getElementById('user-signed-out').style.display = 'block';
+      document.getElementById('sign-out').style.display = 'none';
     }
   });
 

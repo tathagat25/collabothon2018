@@ -9,7 +9,9 @@
   <link rel="stylesheet" type="text/css" href="styles/inline.css">
   <meta name="mobile-web-app-capable" content="yes">
   <link rel="icon" sizes="192x192" href="images/icons/icon-192x192.png">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="lib/push.js/bin/push.js"></script>
+  <script src="lib/push.js/bin/push.min.js"></script>
+  <script src="lib/push.js/bin/serviceWorker.min.js"></script>
   
 </head>
 <body>
@@ -25,7 +27,7 @@
     <div id="user-signed-in" style="display:none">
         <div class="main__div card" hidden>
             <h2>Registered products</h2>
-            <div class="products_table" />
+            <div class="products_table"></div>
         </div>
     </div>
     <div id="user-signed-out" style="display:none">
@@ -53,11 +55,6 @@
   </script>
     
   <script src="https://cdn.firebase.com/libs/firebaseui/2.5.1/firebaseui.js"></script>
-  
-  <script src="lib/push.js/bin/push.js"></script>
-  <script src="lib/push.js/bin/push.min.js"></script>
-  <script src="lib/push.js/bin/serviceWorker.min.js"></script>
-  
   <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/2.5.1/firebaseui.css" />
 
   <!-- Uncomment the line below when ready to test with fake data -->

@@ -1,5 +1,6 @@
 {
   "projects": {
-    "prod": "coffee-mafia"
+    "prod": "coffee-mafia",
+    "default": "collabothon2018"
   }
 }
