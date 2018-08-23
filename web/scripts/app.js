@@ -139,6 +139,14 @@
       signInSuccessUrl : "/index.html"
     });
 
+	Push.create("Waning!", {
+    body: "Your machine needs a checkup.",
+    icon: 'images/warn.jpg',
+    onClick: function () {
+        window.focus();
+        this.close();
+    }
+});
     //console.log("END init");
   };
 
