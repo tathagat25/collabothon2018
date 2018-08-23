@@ -20,6 +20,7 @@
     headerTitle: document.querySelector('.header__title'),
     totalCoffee: document.querySelector('.total__coffee'),
     mainDiv: document.querySelector('.main__div'),
+    productsTable: document.querySelector('.products_table'),
     user: null
   };
 
@@ -93,7 +94,17 @@
    * Methods to update/refresh the UI
    *
    ****************************************************************************/
-
+    app.startML = function(product) {
+      //console.log(product.product_id);
+      // get the product info from product_id
+      var database = firebase.database();
+      database.ref('/product/' + product.product_id).once('value').then(function(snapshot) {
+        if (snapshot.val()) {
+          console.log(snapshot.val());
+        }
+      });
+        
+  }
 
   /*****************************************************************************
    *
@@ -170,8 +181,35 @@
           });
         }
         
-        // approved users are handled here
+        // User is successfully logged in
         app.mainDiv.removeAttribute('hidden');
+        
+        //start the ML on user's products
+        database.ref('registered_machines/' + userId).once('value', function(snapshot) {
+          snapshot.forEach(function(childSnapshot) {
+            // extend the table
+            database.ref('/product/' + childSnapshot.val().product_id).once('value').then(function(snapshot) {
+              if (snapshot.val()) {
+                console.log(snapshot.val());
+                var tr = document.createElement("tr");
+                var td1 = document.createElement("td");
+                td1.textContent = snapshot.val().manufacturer;
+                var td2 = document.createElement("td");
+                td2.textContent = "STAT!";
+                tr.appendChild(td1);
+                tr.appendChild(td2);
+                
+                app.productsTable.appendChild(tr);
+              }
+            });
+            
+            
+            //app.productsTable
+            //var childKey = childSnapshot.key;
+            //var childData = childSnapshot.val();
+            // app.startML(childSnapshot.val());
+          });
+        });
       });
 
       /*var unpaidCoffeeCount = database.ref('users/' + userId + '/unpaid_coffees_count');
