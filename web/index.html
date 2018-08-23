@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="canonical" href="https://collabothon2018.firebaseapp.com/">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Machine Men</title>
+  <link rel="stylesheet" type="text/css" href="styles/inline.css">
+  <meta name="mobile-web-app-capable" content="yes">
+  <link rel="icon" sizes="192x192" href="images/icons/icon-192x192.png">
+  
+</head>
+<body>
+
+  <header class="header">
+    <h1 class="header__title">The Machine Men</h1>
+    <div class="total__coffee"></div>
+  </header>
+
+  <main class="main">
+    <div id="user-signed-in" style="display:none">
+        <div class="main__div card" hidden>
+            <h2>Your products</h2>
+            <img id="buttonSingleCoffee" class="add__coffee__button__single" aria-label="Add" src="/images/single_coffee.jpg"/>
+            <img id="buttonDoubleCoffee" class="add__coffee__button__double" aria-label="Add" src="/images/double_coffee.jpg"/>
+        </div>
+        <div align="right">
+            <button class="mdl-button mdl-js-button mdl-button--raised" id="sign-out">Sign Out</button>
+        </div>
+    </div>
+    <div id="user-signed-out" style="display:none">
+        <div id="firebaseui-auth-container"></div>
+        <div id="loader">Loading...</div>
+    </div>
+  </main>
+  
+  <script src="https://www.gstatic.com/firebasejs/4.9.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/4.9.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/4.9.1/firebase-database.js"></script>
+
+  <script src="https://www.gstatic.com/firebasejs/4.10.0/firebase.js"></script>
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyCbDIug0aq3knRYMte87B6Io6wHTy0DdMo",
+      authDomain: "collabothon2018.firebaseapp.com",
+      databaseURL: "https://collabothon2018.firebaseio.com",
+      projectId: "collabothon2018",
+      storageBucket: "",
+      messagingSenderId: "421861816770"
+    };
+    firebase.initializeApp(config);
+  </script>
+    
+  <script src="https://cdn.firebase.com/libs/firebaseui/2.5.1/firebaseui.js"></script>
+  <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/2.5.1/firebaseui.css" />
+
+  <!-- Uncomment the line below when ready to test with fake data -->
+  <script src="scripts/app.js?2" async></script>
+
+</body>
+</html>
