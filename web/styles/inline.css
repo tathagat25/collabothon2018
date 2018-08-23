@@ -433,3 +433,7 @@ table, th, td {
 .status_red {
 	background: red;
 }
+
+.status_orange {
+	background: orange;
+}
