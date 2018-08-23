@@ -198,7 +198,7 @@
   
         database.ref('registered_machines/' + userId).once('value', function(snapshot) {
           snapshot.forEach(function(childSnapshot) {
-      if (childSnapshot.val().status != "ok") {
+      if (childSnapshot.val().status == "alarm") {
         //send a push notification to warn about a needed checkup
 		var registered_machine_id = childSnapshot.key
         var productId = childSnapshot.val().product_id;

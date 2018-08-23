@@ -413,7 +413,7 @@ body {
 
 /* Machine Men own Styles */
 table, th, td {
-    border: 1px solid black;
+    #border: 1px solid black;
 }
 
 .row-full{
