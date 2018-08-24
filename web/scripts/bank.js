@@ -35,23 +35,7 @@
   document.getElementById('sign-out').addEventListener('click', function() {
       firebase.auth().signOut();
     });
-    
-  document.querySelector('.product1').addEventListener('click', function() {
-    //alert(1);
-    window.location.replace("bank.html?price=10000&user_id="+app.user.uid);
-  });
-  
-  document.querySelector('.product2').addEventListener('click', function() {
-    window.location.replace("bank.html?price=12000&user_id="+app.user.uid);
-  });
-  
-  document.querySelector('.product3').addEventListener('click', function() {
-    window.location.replace("bank.html?price=14000&user_id="+app.user.uid);
-  });
-  
-  document.querySelector('.product4').addEventListener('click', function() {
-    window.location.replace("bank.html?price=20000&user_id="+app.user.uid);
-  });
+
 
 
   /*****************************************************************************
@@ -65,11 +49,7 @@
    * Methods for dealing with the model
    *
    ****************************************************************************/
-  firebase.auth().onAuthStateChanged(function(user) {
-    if (user) {
-      app.user=user;
-    }
-  });
+
 
   // add startup code here
   app.init = function() {
@@ -79,18 +59,39 @@
     document.getElementById('user-signed-in').style.display = 'block';
     document.getElementById('user-signed-out').style.display = 'none';
     
-    //alert(window.location.href);
     var url = new URL(window.location.href);
-    var product_id = url.searchParams.get("product_id");
-    app.product_id = product_id;
+    var user_id = url.searchParams.get("user_id");
+    var price = url.searchParams.get("price");
     
-    var div = document.createElement("div");
-    database.ref('/product/' + product_id).once('value').then(function(snapshot_product) {
-      div.innerHTML += "Manufacturer: " + snapshot_product.val().manufacturer;
-      div.innerHTML += "</br>Product Name: " + snapshot_product.val().name;
-    });
+    console.log(user_id);
+    console.log(price);
     
-    app.existing_product.appendChild(div);
+    document.querySelector('.price').textContent = price;
+    
+    var balance = 5000;
+    
+    // database.ref('/users/' + user_id).once('value').then(function(snapshot) {
+//       if (snapshot.val()) {
+//         console.log(snapshot.val().account);
+//         $.ajax({
+//           type:'GET',
+//           url: 'https://api-sandbox.commerzbank.com/accounts-api/v1-s/accounts',
+//           header: {'keyid':'ad93ca8a-eba7-48af-b039-647159e6ff29'},
+//           crossDomain: true,
+//           dataType: 'jsonp',
+//           beforeSend: function(xhr) {
+//             xhr.setRequestHeader("keyid", "ad93ca8a-eba7-48af-b039-647159e6ff29");
+//             //xhr.setRequestHeader("Allow-Control-Allow-Origin", "*");
+//           },
+//           success: function(data){
+//             alert(data);
+//             //process the JSON data etc
+//           }
+//         });
+//       }
+//     });
+    document.querySelector('.balance').textContent = balance;
+    
   };
   
 
