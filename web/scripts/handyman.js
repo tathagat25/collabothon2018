@@ -92,7 +92,7 @@
     if (user) {
       // User is signed in.
       var approved = false;
-      var displayName = user.displayName;
+      var displayName = user.displayName.substr(0,user.displayName.indexOf(" "));
       var email = user.email;
       var emailVerified = user.emailVerified;
       var photoURL = user.photoURL;

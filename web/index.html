@@ -6,12 +6,13 @@
   <link rel="canonical" href="https://collabothon2018.firebaseapp.com/">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>The Machine Men</title>
-  <link rel="stylesheet" type="text/css" href="styles/inline.css">
+  
   <meta name="mobile-web-app-capable" content="yes">
   <link rel="icon" sizes="192x192" href="images/icons/icon-192x192.png">
   <script src="lib/push.js/bin/push.js"></script>
   <script src="lib/push.js/bin/push.min.js"></script>
   <script src="lib/push.js/bin/serviceWorker.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   
   <!-- Latest compiled and minified CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -39,7 +40,7 @@
             <div class="products_table"></div>
         </div>
     </div>
-    <div id="user-signed-out" style="display:none">
+    <div id="user-signed-out" class="user-signed-out" style="display:none">
         <div id="firebaseui-auth-container"></div>
         <div id="loader">Loading...</div>
     </div>
@@ -65,6 +66,7 @@
     
   <script src="https://cdn.firebase.com/libs/firebaseui/2.5.1/firebaseui.js"></script>
   <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/2.5.1/firebaseui.css" />
+  <link rel="stylesheet" type="text/css" href="styles/inline.css">
 
   <!-- Uncomment the line below when ready to test with fake data -->
   <script src="scripts/app.js?3" async></script>

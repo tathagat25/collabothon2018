@@ -86,7 +86,7 @@
     if (user) {
       // User is signed in.
       var approved = false;
-      var displayName = user.displayName;
+      var displayName = user.displayName.substr(0,user.displayName.indexOf(" "));
       var email = user.email;
       var emailVerified = user.emailVerified;
       var photoURL = user.photoURL;
@@ -170,7 +170,7 @@
                    buyNew.onclick = function() {window.open("product_buy_options.html?product_id="+childSnapshot.val().product_id,"_self")}
 
                    var leasing = document.createElement("BUTTON");
-                   var leasingText = document.createTextNode("Short term leasing");
+                   var leasingText = document.createTextNode("leasing");
                    leasing.classList.add("mdl-button", "mdl-js-button", "mdl-button--raised");
 
                    leasing.appendChild(leasingText);
