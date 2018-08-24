@@ -51,8 +51,6 @@
     console.log("customer " + customer_id + " reg_machin " + registered_machine_id);
     console.log(registered_machine_id);
 
-    console.log("begin div");
-
     var newDiv = document.createElement("div");
 
     var firstOption = document.createElement("BUTTON");

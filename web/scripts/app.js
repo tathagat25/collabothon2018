@@ -154,23 +154,33 @@
                    newDiv.appendChild(inspection_comment);
 
                    var buyNew = document.createElement("BUTTON");
-                   var buyNewText = document.createTextNode("Buy New");
+                   var buyNewText = document.createTextNode("Replace");
 
                    buyNew.appendChild(buyNewText);
-buyNew.onclick = function() {window.open("product_buy_options.html?product_id="+childSnapshot.val().product_id,"_self")
+                   buyNew.onclick = function() {window.open("product_buy_options.html?product_id="+childSnapshot.val().product_id,"_self")
+                   }
 
-}
+                   var lease = document.createElement("BUTTON");
+                   var leaseText = document.createTextNode("Lease");
+                   lease.appendChild(leaseText);
+
+                   var ignore = document.createElement("BUTTON");
+                   var ignoreText = document.createTextNode("Ignore");
+                   ignore.appendChild(ignoreText);
+
                    newDiv.appendChild(document.createElement("br"));
                    newDiv.appendChild(document.createTextNode("Product broken"));
                    newDiv.appendChild(document.createElement("br"));
                    newDiv.appendChild(buyNew);
+                   newDiv.appendChild(lease);
+                   newDiv.appendChild(ignore);
                 }
                 else if ("technical_check_pending" == status){
-                       newDiv.classList.add("status_appointment");
+                   newDiv.classList.add("status_appointment");
 
-                       newDiv.appendChild(document.createElement("br"));
-                       var scheduledDate = document.createTextNode("Scheduled: " +  childSnapshot.val().next_inspection_date);
-                       newDiv.appendChild(scheduledDate);
+                   newDiv.appendChild(document.createElement("br"));
+                   var scheduledDate = document.createTextNode("Scheduled: " +  childSnapshot.val().next_inspection_date);
+                   newDiv.appendChild(scheduledDate);
                 }
                 else {
                    newDiv.classList.add("status_alarm");
