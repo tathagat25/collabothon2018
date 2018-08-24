@@ -163,6 +163,7 @@
 
                    var buyNew = document.createElement("BUTTON");
                    var buyNewText = document.createTextNode("Replace");
+                   buyNew.classList.add("mdl-button", "mdl-js-button", "mdl-button--raised");
 
                    buyNew.appendChild(buyNewText);
 
@@ -170,6 +171,7 @@
 
                    var leasing = document.createElement("BUTTON");
                    var leasingText = document.createTextNode("Short term leasing");
+                   leasing.classList.add("mdl-button", "mdl-js-button", "mdl-button--raised");
 
                    leasing.appendChild(leasingText);
                    leasing.onclick = function() {window.open("product_leasing_options.html?product_id="+childSnapshot.val().product_id,"_self")}
@@ -212,6 +214,7 @@
                 else {
                    newDiv.classList.add("status_alarm");
                    var technicalCheckAppointment = document.createElement("BUTTON");
+				   technicalCheckAppointment.classList.add("mdl-button", "mdl-js-button", "mdl-button--raised");
                    var technicalCheckAppointmentText = document.createTextNode("Technical Check");
                    technicalCheckAppointment.appendChild(technicalCheckAppointmentText);
                    technicalCheckAppointment.addEventListener("click", function(e) {

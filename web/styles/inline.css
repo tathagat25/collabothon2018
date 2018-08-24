@@ -430,6 +430,7 @@ table, th, td {
 
 .status_broken {
 	background: #ff000b;
+	height: auto;
 }
 
 .status_appointment {

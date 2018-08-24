@@ -56,16 +56,19 @@
     var firstOption = document.createElement("BUTTON");
     var firstOptionLabel = "28.08.2018 14:00";
     var firstOptionText = document.createTextNode(firstOptionLabel);
+    firstOption.classList.add("mdl-button", "mdl-js-button", "mdl-button--raised");
     firstOption.appendChild(firstOptionText);
 
     var secondOption = document.createElement("BUTTON");
     var secondOptionLabel = "29.08.2018 14:00";
     var secondOptionText = document.createTextNode(secondOptionLabel);
+    secondOption.classList.add("mdl-button", "mdl-js-button", "mdl-button--raised");
     secondOption.appendChild(secondOptionText);
 
     var thirdOption = document.createElement("BUTTON");
     var thirdOptionLabel = "30.08.2018 09:00";
     var thirdOptionText = document.createTextNode(thirdOptionLabel);
+    thirdOption.classList.add("mdl-button", "mdl-js-button", "mdl-button--raised");
     thirdOption.appendChild(thirdOptionText);
 
     newDiv.appendChild(firstOption);
