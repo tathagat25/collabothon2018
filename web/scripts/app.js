@@ -179,7 +179,7 @@ buyNew.onclick = function() {window.open("product_buy_options.html?product_id="+
                    technicalCheckAppointment.appendChild(technicalCheckAppointmentText);
                    technicalCheckAppointment.addEventListener("click", function(e) {
                        window.location.replace("techniker_schedule.html?customer_id=" +
-                        userId + "&registered_machine_id=" + childSnapshot.val().product_id + "");
+                        userId + "&registered_machine_id=" + childSnapshot.key + "");
                    });
 
                    newDiv.appendChild(document.createElement("br"));
