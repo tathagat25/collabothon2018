@@ -134,11 +134,19 @@
                 var manufacturer = document.createTextNode(snapshot.val().manufacturer);
                 var name = document.createTextNode(snapshot.val().name);
                 var status = childSnapshot.val().status;
+                var install_date = document.createTextNode("Installed on " + childSnapshot.val().install_date);
+                var climate = document.createTextNode("Climate is " + childSnapshot.val().weather);
+                var status = childSnapshot.val().status;
                 var daysForNextAlert = document.createTextNode("Next Alert in " + childSnapshot.val().days_until_next_alert + " days ");
 
                 newDiv.appendChild(name);
                 newDiv.appendChild(document.createElement("br"));
                 newDiv.appendChild(manufacturer);
+                newDiv.appendChild(document.createElement("br"));
+
+                newDiv.appendChild(install_date);
+                newDiv.appendChild(document.createElement("br"));
+                newDiv.appendChild(climate);
 
                 if ("ok" == status) {
                    newDiv.classList.add("status_ok");
@@ -167,6 +175,15 @@
                    var ignore = document.createElement("BUTTON");
                    var ignoreText = document.createTextNode("Ignore");
                    ignore.appendChild(ignoreText);
+                   ignore.onclick = function() {
+                        database.ref('registered_machines/' + userId + '/' + childSnapshot.key).update({
+                              status : "ignore"
+                            }, function(error) {
+                          if (error) {
+                            console.log("Something went wrong while setting machine to ignore", error)
+                          }
+                        });
+                   }
 
                    newDiv.appendChild(document.createElement("br"));
                    newDiv.appendChild(document.createTextNode("Product broken"));
@@ -179,8 +196,15 @@
                    newDiv.classList.add("status_appointment");
 
                    newDiv.appendChild(document.createElement("br"));
-                   var scheduledDate = document.createTextNode("Scheduled: " +  childSnapshot.val().next_inspection_date);
+                   var scheduledDate = document.createTextNode("Scheduled check: " +  childSnapshot.val().next_inspection_date);
                    newDiv.appendChild(scheduledDate);
+                }
+                else if ("ignore" == status){
+                   newDiv.classList.add("status_ignore");
+
+                   newDiv.appendChild(document.createElement("br"));
+                   var IgnoredElement = document.createTextNode("Ignored");
+                   newDiv.appendChild(IgnoredElement);
                 }
                 else {
                    newDiv.classList.add("status_alarm");
