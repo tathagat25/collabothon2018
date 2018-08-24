@@ -48,7 +48,7 @@
     app.customer_id = customer_id;
     var registered_machine_id = url.searchParams.get("registered_machine_id");
     app.registered_machine_id=registered_machine_id;
-    console.log(customer_id);
+    console.log("customer " + customer_id + " reg_machin " + registered_machine_id);
     console.log(registered_machine_id);
 
     console.log("begin div");
@@ -79,6 +79,12 @@
     newDiv.appendChild(document.createElement("br"));
     newDiv.appendChild(thirdOption);
 
+ // To add for already existing user in
+   /* database.ref('handyman_machines/xv7875KOapUlG70KwyMqpSQJWby1/' + app.customer_id).once('value').then(function(snap) {
+        snap.ref.update({[app.registered_machine_id] : "x"});
+     });
+*/
+
     firstOption.addEventListener("click", function(e) {
         updateRegisteredMachines(firstOptionLabel);
      });
@@ -99,14 +105,11 @@
                         console.log("Something went wrong while schedule technical check", error)
                       }
                     });
-         /* database.ref('handyman_machines').limitToFirst(1).once(+ app.customer_id + '/' + app.registered_machine_id).update({
-                                    status : "technical_check_pending",
-                                    next_inspection_date : inspectionDate
-                                  }, function(error) {
-                                if (error) {
-                                  console.log("Something went wrong while schedule technical check", error)
-                                }
-                              });*/
+
+          /*database.ref('handyman_machines/xv7875KOapUlG70KwyMqpSQJWby1/' + app.customer_id).update({
+                      [app.registered_machine_id] : "x"
+                   }, function(e) {
+                   });*/
 
           window.location.replace("index.html");
      }
