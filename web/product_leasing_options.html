@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="canonical" href="https://collabothon2018.firebaseapp.com/">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Machine Men</title>
+  <link rel="stylesheet" type="text/css" href="styles/inline.css">
+  <meta name="mobile-web-app-capable" content="yes">
+  <link rel="icon" sizes="192x192" href="images/icons/icon-192x192.png">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  
+</head>
+<body>
+
+  <header class="header header_handyman">
+    <h1 class="header__title" onclick='window.open("index.html","_self")'>The Machine Men</h1>
+    <div align="left">
+        <button class="mdl-button mdl-js-button mdl-button--raised" id="sign-out">Sign Out</button>
+    </div>
+  </header>
+
+  <main class="main">
+    <div id="user-signed-in" style="display:none">
+        <div class="main__div card" hidden>
+            <h2>Short term Leasing options</h2>
+            <h3 style="color:red" class="existing_product"></h3>
+            <h4 id="existing_product"></h4>
+            <div class="products_table">
+                
+            </div>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Seller</th>
+                    <th>Product</th>
+                    <th>leasing rate (EUR/month)</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>Bosch</td>
+                    <td>Macho Heater</td>
+                    <td>200</td>
+                </tr>
+                <tr>
+                    <td>Bosch</td>
+                    <td>Heater 007</td>
+                    <td>240</td>
+                </tr>
+                <tr>
+                    <td>Siemens</td>
+                    <td>Heat me up baby</td>
+                    <td>280</td>
+                </tr>
+                <tr>
+                    <td>Viessmann</td>
+                    <td>Burn to hell</td>
+                    <td>400</td>
+                </tr>
+                </tbody>
+            </table>
+            
+        </div>
+    </div>
+    <div id="user-signed-out" style="display:none">
+        <div id="firebaseui-auth-container"></div>
+        <div id="loader">Loading...</div>
+    </div>
+  </main>
+  
+  <script src="https://www.gstatic.com/firebasejs/4.9.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/4.9.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/4.9.1/firebase-database.js"></script>
+
+  <script src="https://www.gstatic.com/firebasejs/4.10.0/firebase.js"></script>
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyCbDIug0aq3knRYMte87B6Io6wHTy0DdMo",
+      authDomain: "collabothon2018.firebaseapp.com",
+      databaseURL: "https://collabothon2018.firebaseio.com",
+      projectId: "collabothon2018",
+      storageBucket: "",
+      messagingSenderId: "421861816770"
+    };
+    firebase.initializeApp(config);
+  </script>
+    
+  <script src="https://cdn.firebase.com/libs/firebaseui/2.5.1/firebaseui.js"></script>
+  <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/2.5.1/firebaseui.css" />
+
+  <!-- Uncomment the line below when ready to test with fake data -->
+  <script src="scripts/product_lease_options.js?2" async></script>
+
+</body>
+</html>
