@@ -20,7 +20,7 @@
     headerTitle: document.querySelector('.header__title'),
     mainDiv: document.querySelector('.main__div'),
     productsTable: document.querySelector('.products_table'),
-    existing_product: document.querySelector('.existing_product'),
+    existing_product: document.getElementById('existing_product'),
     user: null,
     customer_id:null,
     registered_machine_id:null
@@ -35,23 +35,6 @@
   document.getElementById('sign-out').addEventListener('click', function() {
       firebase.auth().signOut();
     });
-    
-  document.querySelector('.product1').addEventListener('click', function() {
-    //alert(1);
-    window.location.replace("bank.html?price=10000&user_id="+app.user.uid);
-  });
-  
-  document.querySelector('.product2').addEventListener('click', function() {
-    window.location.replace("bank.html?price=12000&user_id="+app.user.uid);
-  });
-  
-  document.querySelector('.product3').addEventListener('click', function() {
-    window.location.replace("bank.html?price=14000&user_id="+app.user.uid);
-  });
-  
-  document.querySelector('.product4').addEventListener('click', function() {
-    window.location.replace("bank.html?price=20000&user_id="+app.user.uid);
-  });
 
 
   /*****************************************************************************
@@ -65,11 +48,7 @@
    * Methods for dealing with the model
    *
    ****************************************************************************/
-  firebase.auth().onAuthStateChanged(function(user) {
-    if (user) {
-      app.user=user;
-    }
-  });
+
 
   // add startup code here
   app.init = function() {
@@ -86,8 +65,7 @@
     
     var div = document.createElement("div");
     database.ref('/product/' + product_id).once('value').then(function(snapshot_product) {
-      div.innerHTML += "Manufacturer: " + snapshot_product.val().manufacturer;
-      div.innerHTML += "</br>Product Name: " + snapshot_product.val().name;
+      app.existing_product.innerHTML = "Here you can find immediately avaiable products for replacement of your " + snapshot_product.val().name;
     });
     
     app.existing_product.appendChild(div);

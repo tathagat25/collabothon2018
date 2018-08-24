@@ -165,12 +165,14 @@
                    var buyNewText = document.createTextNode("Replace");
 
                    buyNew.appendChild(buyNewText);
-                   buyNew.onclick = function() {window.open("product_buy_options.html?product_id="+childSnapshot.val().product_id,"_self")
-                   }
 
-                   var lease = document.createElement("BUTTON");
-                   var leaseText = document.createTextNode("Lease");
-                   lease.appendChild(leaseText);
+                   buyNew.onclick = function() {window.open("product_buy_options.html?product_id="+childSnapshot.val().product_id,"_self")}
+
+                   var leasing = document.createElement("BUTTON");
+                   var leasingText = document.createTextNode("Short term leasing");
+
+                   leasing.appendChild(leasingText);
+                   leasing.onclick = function() {window.open("product_leasing_options.html?product_id="+childSnapshot.val().product_id,"_self")}
 
                    var ignore = document.createElement("BUTTON");
                    var ignoreText = document.createTextNode("Ignore");
@@ -189,8 +191,9 @@
                    newDiv.appendChild(document.createTextNode("Product broken"));
                    newDiv.appendChild(document.createElement("br"));
                    newDiv.appendChild(buyNew);
-                   newDiv.appendChild(lease);
                    newDiv.appendChild(ignore);
+
+                   newDiv.appendChild(leasing);
                 }
                 else if ("technical_check_pending" == status){
                    newDiv.classList.add("status_appointment");

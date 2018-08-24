@@ -33,9 +33,9 @@
   <main class="main">
     <div id="user-signed-in" style="display:none">
         <div class="main__div card" hidden>
-            <h2>Product Selection Page</h2>
+            <h2>Short term Leasing options</h2>
             <h3 style="color:red" class="existing_product"></h3>
-            <h4>Following are the equivalent products we found for you using our algorithm</h4>
+            <h4 id="existing_product"></h4>
             <div class="products_table">
                 
             </div>
@@ -44,34 +44,29 @@
                 <tr>
                     <th>Seller</th>
                     <th>Product</th>
-                    <th>Price (EUR)</th>
-                    <th>Delivery</th>
+                    <th>leasing rate (EUR/month)</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr class="product1">
+                <tr>
                     <td>Bosch</td>
                     <td>Macho Heater</td>
-                    <td>10000</td>
-                    <td>1 month</td>
+                    <td>200</td>
                 </tr>
-                <tr class="product2">
+                <tr>
                     <td>Bosch</td>
                     <td>Heater 007</td>
-                    <td>12000</td>
-                    <td>2 month</td>
+                    <td>240</td>
                 </tr>
-                <tr class="product3">
+                <tr>
                     <td>Siemens</td>
                     <td>Heat me up baby</td>
-                    <td>14000</td>
-                    <td>1.5 month</td>
+                    <td>280</td>
                 </tr>
-                <tr class="product4">
+                <tr>
                     <td>Viessmann</td>
                     <td>Burn to hell</td>
-                    <td>20000</td>
-                    <td>3 month</td>
+                    <td>400</td>
                 </tr>
                 </tbody>
             </table>
@@ -106,7 +101,7 @@
   <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/2.5.1/firebaseui.css" />
 
   <!-- Uncomment the line below when ready to test with fake data -->
-  <script src="scripts/product_buy_options.js?2" async></script>
+  <script src="scripts/product_lease_options.js?2" async></script>
 
 </body>
 </html>
