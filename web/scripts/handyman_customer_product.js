@@ -54,6 +54,23 @@
   });
     });
 
+    document.getElementById('buttonMarkOk').addEventListener('click', function() {
+      var database = firebase.database();
+      var comment = document.getElementById('techincal_comment').value;
+      
+      //alert(comment);
+      
+      database.ref('registered_machines/' + app.customer_id + '/' + app.registered_machine_id).update({
+        status : "ok",
+        inspection_comment: comment
+      }, function(error) {
+    if (error) {
+      // The write failed...
+    } else {
+      window.location.replace("handyman.html");
+    }
+  });
+    });
 
   /*****************************************************************************
    *
