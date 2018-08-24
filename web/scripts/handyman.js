@@ -140,7 +140,7 @@
             var user_id;
             var registered_machine_id;
             var product_status;
-            div.classList.add("status_orange");
+            div.classList.add("status_appointment");
             div.classList.add("row-full");
             // extend the table
             // database.ref('/product/' + childSnapshot.val().product_id).once('value').then(function(snapshot) {

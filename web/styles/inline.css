@@ -194,6 +194,7 @@ body {
   overflow-x: hidden;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
+	background-color:#3b3838;
 }
 	
 .dialog-container {
@@ -425,22 +426,31 @@ table, th, td {
 }
 
 .status_ok {
-	background: #1bce54;
+	background: #1bce54 url(/images/Collabothon_Picture_Heating_green.jpg) no-repeat 16px 50%;
+	height: auto;
+	padding-left:120px;
 }
 
 .status_broken {
-	background: #ff000b;
+	background: #ff000b url(/images/Collabothon_Picture_Heating_red.jpg) no-repeat 16px 50%;
 	height: auto;
+	padding-left:120px;
 }
 
 .status_appointment {
-	background: #fc9204;
+	background: #fc9204 url(/images/Collabothon_Picture_Heating_yellow.jpg) no-repeat 16px 50%;
+	height: auto;
+	padding-left:120px;
 }
 
 .status_alarm {
-	background: #ffd400;
+	background: #ffd400 url(/images/Collabothon_Picture_Heating_yellow.jpg) no-repeat 16px 50%;
+	height: auto;
+	padding-left:120px;
 }
 
 .status_ignore {
 	background: #CD5C5C;
+	height: auto;
+	padding-left:120px;
 }

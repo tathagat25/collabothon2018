@@ -177,6 +177,7 @@
                    leasing.onclick = function() {window.open("product_leasing_options.html?product_id="+childSnapshot.val().product_id,"_self")}
 
                    var ignore = document.createElement("BUTTON");
+                   ignore.classList.add("mdl-button", "mdl-js-button", "mdl-button--raised");
                    var ignoreText = document.createTextNode("Ignore");
                    ignore.appendChild(ignoreText);
                    ignore.onclick = function() {

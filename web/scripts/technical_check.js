@@ -101,7 +101,7 @@
                       }
                     });
 
-          database.ref('handyman_machines/xv7875KOapUlG70KwyMqpSQJWby1/' + app.customer_id).update({
+          database.ref('handyman_machines/xv7875KOapUlG70KwyMqpSQJWby1/' + app.customer_id).set({
                       registered_machine_id : app.registered_machine_id
                    }, function(e) {
           });
