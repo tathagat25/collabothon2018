@@ -79,12 +79,6 @@
     newDiv.appendChild(document.createElement("br"));
     newDiv.appendChild(thirdOption);
 
- // To add for already existing user in
-   /* database.ref('handyman_machines/xv7875KOapUlG70KwyMqpSQJWby1/' + app.customer_id).once('value').then(function(snap) {
-        snap.ref.update({[app.registered_machine_id] : "x"});
-     });
-*/
-
     firstOption.addEventListener("click", function(e) {
         updateRegisteredMachines(firstOptionLabel);
      });
@@ -106,10 +100,10 @@
                       }
                     });
 
-          /*database.ref('handyman_machines/xv7875KOapUlG70KwyMqpSQJWby1/' + app.customer_id).update({
-                      [app.registered_machine_id] : "x"
+          database.ref('handyman_machines/xv7875KOapUlG70KwyMqpSQJWby1/' + app.customer_id).update({
+                      registered_machine_id : app.registered_machine_id
                    }, function(e) {
-                   });*/
+          });
 
           window.location.replace("index.html");
      }
